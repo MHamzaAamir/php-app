@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashBoardController;
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/dashboard',[DashBoardController::class,'index']);
 
 Route::get('/signin',[AuthController::class,'showSignIn']);
 Route::get('/signup',[AuthController::class,'showSignUp']);
