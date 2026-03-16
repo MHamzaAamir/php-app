@@ -1,4 +1,10 @@
-<x-layout>
+
+@extends('auth.layouts.app')
+
+@section('title','SignIn')
+
+@section('content')
+    
     <div class="min-h-screen flex justify-center items-center">
         <form class="w-full max-w-96 rounded-xl shadow-2xl flex flex-col gap-5 p-5" method="post" action="/signup">
             @csrf
@@ -46,4 +52,5 @@
 
         </form>
     </div>
-</x-layout>
+
+@endsection

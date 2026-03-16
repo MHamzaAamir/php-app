@@ -1,14 +1,41 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashBoardController;
 
-Route::get('/dashboard',[DashBoardController::class,'index']);
+// Auth Controller
+use App\Http\Controllers\Auth\AuthController;
 
+// Admin Controllers
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\CourseController as AdminCourseController;
+
+// Student Controllers
+use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
+
+
+// Auth 
 Route::get('/signin',[AuthController::class,'showSignIn']);
 Route::get('/signup',[AuthController::class,'showSignUp']);
 
 Route::post('/signin',[AuthController::class,'signIn']);
 Route::post('/signup',[AuthController::class,'signUp']);
 Route::post('/signout',[AuthController::class,'signOut']);
+
+
+//Admin
+Route::prefix('admin')->group(function () {
+
+    Route::get('/', [AdminDashboardController::class, 'index']);
+
+    Route::get('/users', [AdminUserController::class, 'index']);
+
+    Route::get('/courses', [AdminCourseController::class, 'index']);
+
+});
+
+// Student
+Route::prefix('student')->group(function (){
+    Route::get('/',[StudentDashboardController::class, 'index']);
+});
+

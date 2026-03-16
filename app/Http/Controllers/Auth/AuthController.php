@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\ValidationException; 
 
 class AuthController extends Controller
 {
     public function showSignIn(){
-        return view("signIn");
+        return view("auth.signIn");
     }
     public function showSignUp(){
-        return view("signUp");
+        return view("auth.signUp");
     }
 
     public function signIn(Request $request){
@@ -24,7 +25,12 @@ class AuthController extends Controller
 
         if (Auth::attempt($validated)){
             $request->session()->regenerate();
-            return redirect("/dashboard");
+            $role = Auth::user()->role;
+            if ($role === "admin"){
+                return redirect("/admin");
+            }else if ($role === "student"){
+                return redirect("/student");
+            }
         }
 
         throw ValidationException::withMessages([
@@ -40,13 +46,18 @@ class AuthController extends Controller
             'age'=>'required|integer'
         ]);
 
-        $validated['role'] = 'user';
+        $validated['role'] = 'student';
 
         $user = User::create($validated);
 
         Auth::login($user);
 
-        return redirect("/dashboard");
+        $role = Auth::user()->role;
+        if ($role === "admin"){
+            return redirect("/admin");
+        }else if ($role === "student"){
+            return redirect("/student");
+        }
     }
 
     public function signOut(Request $request){
