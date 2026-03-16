@@ -41,11 +41,7 @@ Update database credentials in `.env`:
 - `DB_USERNAME`
 - `DB_PASSWORD`
 
-### 3. Create the database (if needed)
-
-Before running migrations, ensure the database defined in `DB_DATABASE` already exists in your SQL server.
-
-### 4. Run migrations and seeders
+### 3. Run migrations and seeders
 
 ```bash
 php artisan migrate --seed
@@ -53,7 +49,7 @@ php artisan migrate --seed
 
 After this step, the database will contain one admin account and one student account for local development.
 
-### 5. Start the application
+### 4. Start the application
 
 Run the development environment
 
