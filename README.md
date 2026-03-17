@@ -47,7 +47,7 @@ Update database credentials in `.env`:
 php artisan migrate --seed
 ```
 
-After this step, the database will contain one admin account and one student account for local development.
+After this step, the database will contain one admin account, one student account, and a few example courses for local development.
 
 ### 4. Start the application
 
