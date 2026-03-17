@@ -34,6 +34,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/users', [AdminUserController::class, 'index']);
 
     Route::get('/courses', [AdminCourseController::class, 'index']);
+    Route::get('/courses/create', [AdminCourseController::class, 'create']);
+    Route::post('/courses', [AdminCourseController::class, 'store']);
 
 });
 
