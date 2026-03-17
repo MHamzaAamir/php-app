@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 
 // Student Controllers
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
+use App\Http\Controllers\Student\CourseController as StudentCourseController;
 
 // Default Route
 Route::redirect('/', '/signin');
@@ -42,5 +43,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 // Student
 Route::middleware(['auth', 'role:student'])->prefix('student')->group(function (){
     Route::get('/',[StudentDashboardController::class, 'index']);
+    Route::get('/courses',[StudentCourseController::class, 'index']);
+    Route::get('/mycourses',[StudentCourseController::class, 'mycourses']);
+    Route::post('/courses/{course}/enroll',[StudentCourseController::class,'enroll']);
+    Route::post('/courses/{course}/unenroll',[StudentCourseController::class,'unenroll']);
 });
 
