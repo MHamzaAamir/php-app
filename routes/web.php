@@ -3,16 +3,16 @@
 use Illuminate\Support\Facades\Route;
 
 // Auth Controller
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\WEB\Auth\AuthController;
 
 // Admin Controllers
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Admin\UserController as AdminUserController;
-use App\Http\Controllers\Admin\CourseController as AdminCourseController;
+use App\Http\Controllers\WEB\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\WEB\Admin\UserController as AdminUserController;
+use App\Http\Controllers\WEB\Admin\CourseController as AdminCourseController;
 
 // Student Controllers
-use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
-use App\Http\Controllers\Student\CourseController as StudentCourseController;
+use App\Http\Controllers\WEB\Student\DashboardController as StudentDashboardController;
+use App\Http\Controllers\WEB\Student\CourseController as StudentCourseController;
 
 // Default Route
 Route::redirect('/', '/signin');
