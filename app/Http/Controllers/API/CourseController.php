@@ -44,7 +44,32 @@ class CourseController extends Controller{
     {
         $course->delete();
         return [
-            "Message"=>"Course was deleted"
+            "message"=>"Course was deleted"
+        ];
+    }
+
+    public function myCourses(Request $request)
+    {
+        $user = $request->user();
+        $courses = $user->courses;
+        return $courses;
+    }
+
+    public function enroll(Request $request, Course $course)
+    {
+        $user = $request->user();
+        $user->courses()->syncWithoutDetaching([$course->id]);
+        return [
+            "message"=>"Student enrolled in course"
+        ];
+    }
+
+    public function unenroll(Request $request, Course $course)
+    {
+        $user = $request->user();
+        $user->courses()->detach([$course->id]);
+        return [
+            "message"=>"Student unenrolled from course"
         ];
     }
 

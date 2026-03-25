@@ -15,23 +15,7 @@ class UserController extends Controller
     {
         return User::all(); 
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name'=>'required|string|max:255',
-            'email'=>'required|email|unique:users',
-            'password'=>'required|string|min:8',
-            'age'=>'required|integer',
-            'role'=>'required|string'
-        ]);
-        $user = User::create($validated);
-        return $user;
-    }
-
+    
     /**
      * Display the specified resource.
      */
